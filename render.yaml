@@ -2,13 +2,13 @@ services:
   - type: web
     name: my-fullstack-app
     env: node
-    rootDir: backend  # ระบุว่า backend อยู่ในโฟลเดอร์นี้
+    rootDir:.  # ระบุว่า backend อยู่ในโฟลเดอร์นี้
     buildCommand: "npm install"
     startCommand: "npm start"
 
   - type: web
     name: my-static-site
     env: static
-    rootDir: frontend  # ระบุว่า frontend อยู่ในโฟลเดอร์นี้
+    rootDir:.  # ระบุว่า frontend อยู่ในโฟลเดอร์นี้
     buildCommand: ""
     staticPublishPath: .
