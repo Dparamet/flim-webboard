@@ -2,9 +2,6 @@ services:
   - type: web
     name: my-fullstack-app
     env: node
-    plan: free
+    rootDir: backend  # ระบุว่า backend อยู่ในโฟลเดอร์นี้
     buildCommand: "npm install"
     startCommand: "npm start"
-    envVars:
-      - key: NODE_ENV
-        value: production
