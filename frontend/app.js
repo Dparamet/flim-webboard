@@ -1,4 +1,4 @@
-const apiBaseUrl = 'https://your-api-url.onrender.com/api/notes';  // URL ของ Web Service ที่ได้จาก Render
+const apiBaseUrl = 'https://flim-webboard.onrender.com/';  // URL ของ Web Service ที่ได้จาก Render
 
 // ฟังก์ชันดึงข้อมูลโน้ตจาก API
 async function fetchNotes() {
@@ -20,9 +20,25 @@ async function addNote(title, content) {
 
 // เรียกใช้งาน
 fetchNotes();
-fetch("/api/hello")
-  .then(res => res.json())
-  .then(data => {
-    console.log(data.message);
-    document.getElementById("output").textContent = data.message;
+// ฟังก์ชันดึงข้อมูลกระทู้จาก API
+async function fetchThreads() {
+  const res = await fetch("/api/threads");
+  const threads = await res.json();
+  console.log("Threads: ", threads);
+  // แสดงผลในหน้า HTML
+  const threadList = document.getElementById("threadList");
+  threads.forEach(thread => {
+    const threadElement = document.createElement("div");
+    threadElement.className = "card thread-card";
+    threadElement.innerHTML = `
+      <div class="card-body">
+        <h5 class="thread-title">${thread.title}</h5>
+        <p>${thread.body}</p>
+      </div>
+    `;
+    threadList.appendChild(threadElement);
   });
+}
+
+// เรียกใช้งาน
+fetchThreads();
