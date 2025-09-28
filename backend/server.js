@@ -5,7 +5,12 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // เสิร์ฟไฟล์ static จาก frontend/ ซึ่งต้องอยู่ใน root directory
+// Serve static files from frontend/
 app.use(express.static(path.join(__dirname, "frontend")));
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "frontend", "index.html"));
+});
+
 
 // แก้ไขให้ route root ส่งกลับไฟล์ index.html
 app.get("/", (req, res) => {
