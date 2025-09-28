@@ -4,10 +4,10 @@ const path = require("path");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// ให้ backend serve frontend ด้วย
+// เสิร์ฟไฟล์ static จาก frontend/ ซึ่งต้องอยู่ใน root directory
 app.use(express.static(path.join(__dirname, "frontend")));
 
-// เพิ่ม route สำหรับ / เพื่อให้เซิร์ฟเวอร์ส่ง index.html
+// แก้ไขให้ route root ส่งกลับไฟล์ index.html
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "frontend", "index.html"));
 });
@@ -26,7 +26,7 @@ app.get("/api/hello", (req, res) => {
   res.json({ message: "Hello from backend!" });
 });
 
-// ให้เซิร์ฟเวอร์รันที่พอร์ตที่ตั้งค่าไว้
+// รันเซิร์ฟเวอร์
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
